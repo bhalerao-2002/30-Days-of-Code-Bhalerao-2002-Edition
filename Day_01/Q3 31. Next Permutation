@@ -1,0 +1,50 @@
+class Solution {
+public:
+//As we using the void function we can't return any of this so we will directly print output. So we will use this function to print vectors every time.
+    void dis(vector<int> &arr){
+        for(int i=0; i<arr.size(); i++){
+            cout<<arr[i];
+        }
+    }
+
+    void nextPermutation(vector<int> &permutation) {
+        // Thanks to Bhalerao-2002
+        int n = permutation.size();
+        int ind= -1;//Breack point
+// STEP 1: Finding Break Point
+        for(int i= n-2; i>= 0; i--){
+            if(permutation[i]<permutation[i+1]){
+                ind = i;
+                break;
+            }
+        }
+
+//Commented down this, because we included it in next step in for loop condition
+        // if(ind == -1){
+        //     reverse(permutation.begin(), permutation.end());
+        //     dis(permutation);
+        // }
+
+//STEP 2: Finding next greater element and swap it with permutation[ind].
+        for(int m=n-1; m>ind && ind != -1 ; m--){
+//                              ---------
+//                                   ^
+//                                   | (edge condition)
+            if(permutation[m]>permutation[ind]){
+                swap(permutation[m], permutation[ind]);
+                break;
+            }
+        }
+//STEP 3: Reversing right half
+        reverse(permutation.begin()+ind+1, permutation.end());
+        dis(permutation);
+    }
+};
+
+
+//---------------------------------------------HueHueHue :)----------------------------------------------------
+
+// Approach 1sec (Uses STL CPP function directly)
+ void nextPermutation(vector<int> &permutation) {
+        next_permutation(permutation.begin(), permutation.end());
+}
