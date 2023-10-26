@@ -1,0 +1,21 @@
+Link: https://leetcode.com/problems/maximum-subarray/description/
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        //Thanks to Bhalerao-2002
+        int sum = 0, maxi=INT_MIN;
+
+        for(int j= 0; j<nums.size(); j++){
+            // Adding every upcoming element to previous sum.
+            sum += nums[j];
+
+            if(sum>maxi)
+                maxi= sum;
+            //If sum is becoming less than 0, it will reduce our maxi, so we will not take that elements.
+            if(sum<0)
+                sum=0;
+        }
+        return maxi;
+    }
+};
